@@ -103,3 +103,21 @@ if (localStorage.getItem("theme") === "light_theme") {
   document.body.classList.remove("light_theme");
   document.body.classList.add("dark_theme");
 }
+
+document.querySelectorAll(".project-card").forEach((card) => {
+  const description = card.querySelector(".card-description");
+
+  if (description) {
+    card.addEventListener("mouseenter", () => {
+      description.style.opacity = "1";
+      description.style.visibility = "visible";
+      description.style.transform = "translateY(0)";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      description.style.opacity = "0";
+      description.style.visibility = "hidden";
+      description.style.transform = "translateY(10px)";
+    });
+  }
+});

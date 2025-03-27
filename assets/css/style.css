@@ -701,14 +701,15 @@ main { overflow-x: hidden; }
 
 .project-card .card-title { margin-bottom: 10px; }
 
-.project-card :is(.card-title, .publish-date) {
+.project-card :is(.card-title, .publish-date, .card-description) {
   background: var(--bg-primary);
   padding: 6px 12px;
   width: max-content;
   box-shadow: var(--shadow-1);
   transform: translateY(20px);
   opacity: 0;
-  transition: var(--transition-1);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  color: white;
 }
 
 .project-card .publish-date {
@@ -717,7 +718,7 @@ main { overflow-x: hidden; }
   transition-delay: 0s;
 }
 
-.project-card:is(:hover, :focus) :is(.card-title, .publish-date) {
+.project-card:is(:hover, :focus) :is(.card-title, .publish-date, .card-description) {
   transform: translateY(0);
   opacity: 1;
 }
@@ -731,10 +732,28 @@ main { overflow-x: hidden; }
   margin-inline: auto;
 }
 
+.project-card .card-description {
+  font-size: var(--fs-6);
+  color: white; /* Matches the title and date */
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s; /* Faster transition off */
+  margin-top: 5px;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+}
 
+.project-card:hover .card-description {
+  transition-delay: 0.15s; /* Applies delay only on hover-in */
+  opacity: 1;
+  transform: translateY(0);
+}
 
-
-
+.project-card:not(:hover) .card-description {
+  transition-delay: 0s; /* Makes sure it fades out immediately */
+}
 /*-----------------------------------*\
  * #CONTACT
 \*-----------------------------------*/
